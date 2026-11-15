@@ -1,0 +1,202 @@
+
+<html>
+<head>
+<title>HelperPanel610 v4.0 - Pro Cyber Edition (40 Tools)</title>
+<HTA:APPLICATION ID="HelperPanel610" ICON="aww.ico" BORDER="thin" SCROLL="no" SINGLEINSTANCE="yes" WINDOWSTATE="normal" />
+<style>
+  body {
+    background-color: #070b14;
+    color: #00f3ff;
+    font-family: Consolas, monospace;
+    border: 2px solid #00f3ff;
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+  }
+  h2 {
+    background-color: #00f3ff;
+    color: #070b14;
+    padding: 8px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .grid {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .grid td {
+    width: 25%;
+    padding: 3px;
+  }
+  button {
+    width: 100%;
+    padding: 8px 4px;
+    background-color: #0d1526;
+    color: #00f3ff;
+    border: 1px solid #008b99;
+    font-family: Consolas, monospace;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #00f3ff;
+    color: #070b14;
+    border-color: #ffffff;
+  }
+  .yt-btn {
+    border-color: #ff3333;
+    color: #ff6666;
+  }
+  .yt-btn:hover {
+    background-color: #ff3333;
+    color: #ffffff;
+  }
+  .warn-btn {
+    border-color: #ffaa00;
+    color: #ffcc44;
+  }
+  .warn-btn:hover {
+    background-color: #ffaa00;
+    color: #070b14;
+  }
+  .troll-btn {
+    border: 1px dashed #ff007f;
+    color: #ff4da6;
+  }
+  .troll-btn:hover {
+    background-color: #ff007f;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  #log-screen {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #04070d;
+    border: 1px solid #00a8b5;
+    color: #39ff14;
+    font-size: 11px;
+    text-align: left;
+  }
+</style>
+<script language="VBScript">
+  Sub Window_OnLoad
+    window.resizeTo 820, 520
+  End Sub
+
+  Sub WriteLog(message)
+    document.getElementById("log-screen").innerHTML = "> [ACTIVE] " & message
+  End Sub
+
+  Sub RunCommand(command, description)
+    Call WriteLog(description)
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run command
+  End Sub
+
+  Sub CleanTemp()
+    Call WriteLog("Cleaning temporary files...")
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run "cmd.exe /c del /q /f /s %TEMP%\* & echo Cleanup Complete! & pause"
+  End Sub
+
+  Sub RestartExplorer()
+    Call WriteLog("Restarting Explorer interface...")
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run "cmd.exe /c taskkill /f /im explorer.exe & start explorer.exe", 0
+  End Sub
+
+  Sub RebootSystem()
+    answer = MsgBox("Are you sure you want to restart the computer now?", 4 + 48, "HelperPanel610 System Warning")
+    If answer = 6 Then
+      Set shell = CreateObject("WScript.Shell")
+      shell.Run "shutdown /r /t 0", 0
+    End If
+  End Sub
+
+  Sub SafeTroll()
+    Call WriteLog("TROLL MODE ACTIVE - Fake Hack Initiated!")
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run "cmd.exe /c color 0C & title CRITICAL WARNING & echo [!] SCANNING SYSTEM FILES... & timeout /t 2 >nul & color 0A & echo [!] C DRIVE ACCESS GRANTED... & timeout /t 2 >nul & exit"
+    messages = Array( _
+      "Error 404: You clicked too fast!", _
+      "System compromised... Just kidding, everything is fine!" _
+    )
+    For Each m In messages
+      MsgBox m, 48, "HelperPanel610 System Warning"
+    Next
+    Call WriteLog("Troll mode completed, system is normal.")
+  End Sub
+</script>
+</head>
+<body>
+  <h2>HelperPanel610 v4.0 - PRO CYBER EDITION (40 TOOLS)</h2>
+  <table class="grid">
+    <tr>
+      <td><button class="yt-btn" onclick="Call RunCommand('explorer.exe https://youtube.com', 'Opening YouTube')">1. Open YouTube</button></td>
+      <td><button class="yt-btn" onclick="Call RunCommand('explorer.exe https://github.com', 'Opening GitHub')">2. Open GitHub</button></td>
+      <td><button onclick="Call RunCommand('explorer.exe C:\', 'C Drive opened')">3. C Drive</button></td>
+      <td><button onclick="Call RunCommand('explorer.exe shell:Downloads', 'Downloads opened')">4. Downloads</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('explorer.exe shell:Personal', 'Documents opened')">5. My Documents</button></td>
+      <td><button onclick="Call RunCommand('explorer.exe shell:Desktop', 'Desktop folder opened')">6. Desktop Folder</button></td>
+      <td><button onclick="Call RunCommand('explorer.exe shell:AppData', 'AppData opened')">7. AppData Folder</button></td>
+      <td><button onclick="Call RunCommand('explorer.exe shell:Startup', 'Startup folder opened')">8. Startup Folder</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('cmd.exe', 'CMD launched')">9. Open CMD</button></td>
+      <td><button onclick="Call RunCommand('powershell.exe', 'PowerShell launched')">10. Open PowerShell</button></td>
+      <td><button onclick="Call RunCommand('cmd.exe /k color 0B & tree C:\', 'Scanning system tree')">11. Cyber Scan</button></td>
+      <td><button onclick="Call RunCommand('cmd.exe /k driverquery', 'Listing drivers')">12. Driver List</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('cmd.exe /k netstat -ano', 'Scanning active ports')">13. Active Ports</button></td>
+      <td><button onclick="Call RunCommand('cmd.exe /k getmac /v', 'Listing MAC addresses')">14. MAC Addresses</button></td>
+      <td><button onclick="Call RunCommand('cmd.exe /k netsh wlan show profiles', 'Fetching Wi-Fi profiles')">15. Wi-Fi Profiles</button></td>
+      <td><button onclick="Call RunCommand('cmd.exe /k ipconfig /all', 'IP configuration opened')">16. IP & Network Info</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('cmd.exe /k ping google.com', 'Ping test started')">17. Ping Test</button></td>
+      <td><button onclick="Call RunCommand('cmd.exe /k arp -a', 'ARP table opened')">18. ARP Cache</button></td>
+      <td><button onclick="Call CleanTemp()">19. Clean Temp</button></td>
+      <td><button onclick="Call RunCommand('cleanmgr.exe', 'Disk Cleanup opened')">20. Disk Cleanup</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('cmd.exe /k ipconfig /flushdns', 'DNS cache flushed')">21. Flush DNS Cache</button></td>
+      <td><button onclick="Call RunCommand('cmd.exe /k systeminfo', 'Loading system summary')">22. System Summary</button></td>
+      <td><button onclick="Call RunCommand('dxdiag.exe', 'DirectX Diagnostic Tool opened')">23. DirectX (DxDiag)</button></td>
+      <td><button onclick="Call RunCommand('msinfo32.exe', 'Detailed system info opened')">24. System Info</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('cmd.exe /k tasklist', 'Running processes listed')">25. Running Processes</button></td>
+      <td><button onclick="Call RunCommand('devmgmt.msc', 'Device Manager opened')">26. Device Manager</button></td>
+      <td><button onclick="Call RunCommand('diskmgmt.msc', 'Disk Management opened')">27. Disk Management</button></td>
+      <td><button onclick="Call RunCommand('services.msc', 'Windows Services opened')">28. Services</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('regedit.exe', 'Registry Editor opened')">29. Registry Editor</button></td>
+      <td><button onclick="Call RunCommand('control.exe', 'Control Panel opened')">30. Control Panel</button></td>
+      <td><button onclick="Call RunCommand('control firewall.cpl', 'Windows Firewall opened')">31. Firewall</button></td>
+      <td><button onclick="Call RunCommand('control ncpa.cpl', 'Network adapters opened')">32. Network Connections</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call RunCommand('explorer.exe ms-settings:', 'Windows Settings opened')">33. Win Settings</button></td>
+      <td><button onclick="Call RunCommand('calc.exe', 'Calculator opened')">34. Calculator</button></td>
+      <td><button onclick="Call RunCommand('taskmgr.exe', 'Task Manager opened')">35. Task Manager</button></td>
+      <td><button onclick="Call RunCommand('notepad.exe', 'Notepad opened')">36. Notepad</button></td>
+    </tr>
+    <!-- Kalan kisim eksik oldugu icin mevcut fonksiyonlara gore tamamlandi -->
+    <tr>
+      <td><button onclick="Call RestartExplorer()">37. Restart Explorer</button></td>
+      <td><button class="warn-btn" onclick="Call RebootSystem()">38. Restart PC</button></td>
+      <td><button class="warn-btn" onclick="Call RunCommand('shutdown /s /t 60', 'Shutdown scheduled in 60s')">39. Shutdown (60s)</button></td>
+      <td><button class="troll-btn" onclick="Call SafeTroll()">40. Safe Troll</button></td>
+    </tr>
+  </table>
+  <div id="log-screen">> [READY] Waiting for command...</div>
+</body>
+</html>
